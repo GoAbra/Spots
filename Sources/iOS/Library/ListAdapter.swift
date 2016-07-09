@@ -2,9 +2,9 @@ import UIKit
 
 public class ListAdapter : NSObject {
 
-  var spot: Listable
+  public var spot: Listable
 
-  init(spot: Listable) {
+  public init(spot: Listable) {
     self.spot = spot
   }
 }
