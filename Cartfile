@@ -1,3 +1,1 @@
-github "goabra/Sugar"
-github "goabra/Brick"
-github "goabra/Tailor"
+github "hyperoslo/Cache" ~> 4.0

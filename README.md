@@ -1,40 +1,53 @@
-![Spots logo](https://raw.githubusercontent.com/hyperoslo/Spots/master/Images/cover_v2.png)
+![Spots logo](https://raw.githubusercontent.com/hyperoslo/Spots/master/Images/cover_v6.jpg)
+<div align="center">
+<a href="https://travis-ci.org/hyperoslo/Spots" target="_blank">
+<img src="http://img.shields.io/travis/hyperoslo/Spots.svg?style=flat">
+</a>
 
-[![CI Status](http://img.shields.io/travis/hyperoslo/Spots.svg?style=flat)](https://travis-ci.org/hyperoslo/Spots)
-[![Version](https://img.shields.io/cocoapods/v/Spots.svg?style=flat)](http://cocoadocs.org/docsets/Spots)
-[![License](https://img.shields.io/cocoapods/l/Spots.svg?style=flat)](http://cocoadocs.org/docsets/Spots)
-[![Platform](https://img.shields.io/cocoapods/p/Spots.svg?style=flat)](http://cocoadocs.org/docsets/Spots)
-[![Documentation](https://img.shields.io/cocoapods/metrics/doc-percent/Spots.svg?style=flat)](http://cocoadocs.org/docsets/Spots)
-![Swift](https://img.shields.io/badge/%20in-swift%202.2-orange.svg)
-[![Join the chat at https://gitter.im/hyperoslo/Spots](https://badges.gitter.im/hyperoslo/Spots.svg)](https://gitter.im/hyperoslo/Spots?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+<a href="http://cocoadocs.org/docsets/Spots" target="_blank">
+<img src="https://img.shields.io/cocoapods/v/Spots.svg?style=flat">
+</a>
 
-**Spots** is a view controller framework that makes your setup and future
-development blazingly fast. Because of its internal architecture and
-generic view models, you can easily move your view models into
-the cloud. This is super easy to do because **Spots** can translate
-JSON data into view model data right out-of-the-box.
-It is packed with convenience methods that are at your disposal through
-the public API.
+<a href="https://github.com/Carthage/Carthage" target="_blank">
+<img src="https://img.shields.io/badge/Carthage-Compatible-brightgreen.svg?style=flat">
+</a>
+
+<a href="http://cocoadocs.org/docsets/Spots" target="_blank">
+<img src="https://img.shields.io/cocoapods/l/Spots.svg?style=flat">
+</a>
+
+<a href="http://cocoadocs.org/docsets/Spots" target="_blank">
+<img src="https://img.shields.io/badge/platform-ios | macos | tvos-lightgrey.svg">
+</a>
+<br/>
+<a href="http://cocoadocs.org/docsets/Spots" target="_blank">
+<img src="https://img.shields.io/cocoapods/metrics/doc-percent/Spots.svg?style=flat">
+</a>
+
+<a href="https://codecov.io/github/hyperoslo/Spots?branch=master"><img src="https://codecov.io/github/hyperoslo/Spots/coverage.svg?branch=master" alt="Coverage Status" data-canonical-src="https://codecov.io/github/hyperoslo/Spots/coverage.svg?branch=master" style="max-width:100%;"></a>
+
+<img src="https://img.shields.io/badge/%20in-swift%203.0-orange.svg">
+
+<a href="https://gitter.im/hyperoslo/Spots?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge">
+<img src="https://badges.gitter.im/hyperoslo/Spots.svg">
+</a>
+<br><br>
+</div>
+
+**Spots** is a cross-platform view controller framework for building component-based UIs. The internal architecture is built using generic view models that can be transformed both to and from JSON. So, moving your UI declaration to a backend is as easy as pie.
+Data source and delegate setup is handled by **Spots**, so there is no need for you to do that manually. The public API is jam-packed with convenience methods for performing mutation, it is as easy as working with a regular collection type.
 
 ## Table of Contents
 
-<img src="https://raw.githubusercontent.com/hyperoslo/Spots/master/Images/icon_v4.png" alt="Spots Icon" align="right" />
+<img src="https://raw.githubusercontent.com/hyperoslo/Spots/master/Images/icon_v5.png" alt="Spots Icon" align="right" />
 
-* [Key features](#key-features)
+* [Getting started with Spots](#getting-started-with-spots)
 * [Origin Story](#origin-story)
+* [Universal support](#universal-support)
 * [Usage](#usage)
-* [View models in the Cloud](#view-models-in-the-cloud)
+* [Key features](#key-features)
 * [Programmatic approach](#programmatic-approach)
-* [SpotsController](#spotscontroller)
-* [Delegates](#delegates)
-*  [SpotsDelegate](#spotsdelegate)
-*  [SpotsRefreshDelegate](#spotsrefreshdelegate)
-*  [SpotsScrollDelegate](#spotsscrolldelegate)
-*  [SpotsCarouselScrollDelegate](#spotscarouselscrolldelegate)
-* [JSON structure](#json-structure)
-* [Models](#models)
-* [Component](#component)
-* [ViewModel](#viewmodel)
+* [The many faces of Spots](#the-many-faces-of-components)
 * [Installation](#installation)
 * [Dependencies](#dependencies)
 * [Author](#author)
@@ -42,233 +55,70 @@ the public API.
 * [Contributing](#contributing)
 * [License](#license)
 
-## Key features
+## Getting started with Spots
 
-- JSON based views that could be served up by your backend.
-- Supports displaying multiple collections, tables or regular views in the same container.
-- Features both infinity scrolling and pull to refresh, all you have to do is to
-setup delegates that conform to the public protocols on `SpotsController`.
-- No need to implement your own data source, every `Spotable` object has their
-own set of `ViewModel`’s.
-which is maintained internally and is there at your disposable if you decide to
-make changes to them.
-- Easy configuration of `UICollectionView`’s, `UITableView`'s and any custom spot
-implementation that you add.
-This improves code reuse and helps to theme your app and ultimately keep your application consistent.
-- Support custom Spots, all you need to do is to conform to `Spotable`
-- A rich public API for appending, prepending, inserting, updating or
-deleting `ViewModel`s.
-- Features three different spots out-of-the-box; `CarouselSpot`, `GridSpot`, `ListSpot`
-- Static custom cell registrations for all `Spotable` objects.
-Write one view cell and use it across your application, when and where you
-want to use it.
-- Cell height caching, this improves performance as each cell has its height stored as a calculated value.
-on the view model.
-- Supports multiple cell types inside the same data source, no more ugly if-statements in your implementation;
-**Spots** handles this for you by using a cell registry.
+If you are looking for a way to get started with `Spots`, we recommend taking a look at our [Getting started guide](https://github.com/hyperoslo/Spots/blob/master/Documentation/Getting%20started%20guide.md).
 
 ## Origin Story
 
 We wrote a Medium article about how and why we built `Spots`.
 You can find it here: [Hitting the sweet spot of inspiration](https://medium.com/@zenangst/hitting-the-sweet-spot-of-inspiration-637d387bc629#.b9a1mun2i)
 
+## Universal support
+
+Apple's definition of a universal applications is iPhone and iPad. Spots takes this a step further with one controller tailored to each platform to support all your UI related update needs. Internally, everything conforms to the same shared protocol. What this means for you, is that get a unified experience when developing for iOS, tvOS or macOS.
 
 ## Usage
 
-### View models in the Cloud
-```swift
-let controller = SpotsController(json)
-navigationController?.pushViewController(controller, animated: true)
-```
+Use the following links to dive a bit deeper into how Spots works.
 
-The JSON data will be parsed into view model data and your view controller is ready to be presented, it is just that easy.
+* [Building views in Spots](https://github.com/hyperoslo/Spots/blob/master/Documentation/Building%20views%20in%20Spots.md)
+* [Caching](https://github.com/hyperoslo/Spots/blob/master/Documentation/Caching.md)
+* [Delegates](https://github.com/hyperoslo/Spots/blob/master/Documentation/Delegates.md)
+* [Live Editing](https://github.com/hyperoslo/Spots/blob/master/Documentation/Live%20Editing.md)
+* [JSON Structure](https://github.com/hyperoslo/Spots/blob/master/Documentation/JSON%20Structure.md)
+* [Models](https://github.com/hyperoslo/Spots/blob/master/Documentation/Models.md)
+* [Performing mutation](https://github.com/hyperoslo/Spots/blob/master/Documentation/Performing%20mutation.md)
+* [Working with layout](https://github.com/hyperoslo/Spots/blob/master/Documentation/Layout.md)
+* [Working with the SpotsController](https://github.com/hyperoslo/Spots/blob/master/Documentation/SpotsController.md)
 
-### Programmatic approach
-```swift
-let myContacts = Component(title: "My contacts", items: [
-  ViewModel(title: "John Hyperseed"),
-  ViewModel(title: "Vadym Markov"),
-  ViewModel(title: "Ramon Gilabert Llop"),
-  ViewModel(title: "Khoa Pham"),
-  ViewModel(title: "Christoffer Winterkvist")
-])
-let listSpot = ListSpot(component: myContacts)
-let controller = SpotsController(spots: [listSpot])
 
-navigationController?.pushViewController(controller, animated: true)
-```
+## How does it work?
 
-## SpotsController
-The `SpotsController` inherits from `UIViewController` but it sports some core features that makes your everyday mundane tasks a thing of the past. `SpotsController` has four different delegates
+At the top level of **Spots**, you have the **SpotsController** which is the replacement for your view controller.
 
-## Delegates
+Inside of the **SpotsController**, you have a **SpotsScrollView** that handles the linear layout of the components that you add to your data source. It is also in charge of giving the user a unified scrolling experience. Scrolling is disabled on all underlaying components except for components that have horizontal scrolling.
 
-### SpotsDelegate
+So how does scrolling work? Whenever a user scrolls, the **SpotsScrollView** computes the offset and size of its children. By using this technique you can easily create screens that contain lists, grids and carousels with a scrolling experience as smooth as proverbial butter. By dynamically changing the size and offset of the children, **SpotsScrollView** also ensures that reusable views are allocated and deallocated like you would expect them to.
+**SpotsScrollView** uses KVO on any view that gets added so if one component changes height or position, the entire layout will invalidate itself and redraw it like it was intended.
 
-```swift
-public protocol SpotsDelegate: class {
-  func spotDidSelectItem(spot: Spotable, item: ViewModel)
-}
-```
+**SpotsController** supports multiple **Component**'s, each represent their own UI container and hold their own data source. Components all share the same data model called `ComponentModel`, it includes layout, interaction and view model data. **Component** gets its super-powers from protocol extensions, powers like mutation, layout processing and convenience methods for accessing model information. 
 
-`spotDidSelectItem` is triggered when a user taps on an item inside of a `Spotable` object. It returns both the `spot` and the `item` to add context to what UI element was touched.
+## Key features
 
-### SpotsRefreshDelegate
-
-```swift
-public protocol SpotsRefreshDelegate: class {
-  func spotsDidReload(refreshControl: UIRefreshControl, completion: (() -> Void)?)
-}
-```
-
-`spotsDidReload` is triggered when a user pulls the `SpotsScrollView` offset above its initial bounds.
-
-### SpotsScrollDelegate
-
-```swift
-public protocol SpotsScrollDelegate: class {
-  func spotDidReachEnd(completion: (() -> Void)?)
-}
-```
-
-`spotDidReachEnd` is triggered when the user scrolls to the end of the `SpotsScrollView`, this can be used to implement infinite scrolling.
-
-### SpotsCarouselScrollDelegate
-
-```swift
-public protocol SpotsCarouselScrollDelegate: class {
-  func spotDidEndScrolling(spot: Spotable, item: ViewModel)
-}
-```
-
-`spotDidEndScrolling` is triggered when a user ends scrolling in a carousel, it returns item that is being displayed and the spot to give you the context that you need.
-
-## JSON structure
-
-```json
-{
-   "components":[
-      {
-         "title":"Hyper iOS",
-         "type":"list",
-         "span":"1",
-         "items":[
-            {
-               "title":"John Hyperseed",
-               "subtitle":"Build server",
-               "image":"{image url}",
-               "type":"profile",
-               "action":"profile:1",
-               "meta":{
-                  "nationality":"Apple"
-               }
-            },
-            {
-               "title":"Vadym Markov",
-               "subtitle":"iOS Developer",
-               "image":"{image url}",
-               "type":"profile",
-               "action":"profile:2",
-               "meta":{
-                  "nationality":"Ukrainian"
-               }
-            },
-            {
-               "title":"Ramon Gilabert Llop",
-               "subtitle":"iOS Developer",
-               "image":"{image url}",
-               "type":"profile",
-               "action":"profile:3",
-               "meta":{
-                  "nationality":"Catalan"
-               }
-            },
-            {
-               "title":"Khoa Pham",
-               "subtitle":"iOS Developer",
-               "image":"{image url}",
-               "type":"profile",
-               "action":"profile:4",
-               "meta":{
-                  "nationality":"Vietnamese"
-               }
-            },
-            {
-               "title":"Christoffer Winterkvist",
-               "subtitle":"iOS Developer",
-               "image":"{image url}",
-               "type":"profile",
-               "action":"profile:5",
-               "meta":{
-                  "nationality":"Swedish"
-               }
-            }
-         ]
-      }
-   ]
-}
-```
-
-## Models
-
-### Component
-
-```swift
-  public struct Component: Mappable {
-  public var index = 0
-  public var title = ""
-  public var kind = ""
-  public var span: CGFloat = 0
-  public var items = [ViewModel]()
-  public var size: CGSize?
-  public var meta = [String : String]()
-}
-```
-
-- **.index**
-Calculated value to determine the index it has inside of the spot.
-- **.title**
-This is used as a title in `UITableView` view.
-- **.kind**
-Determines which spot should be used. `carousel`, `list`, `grid` are there by default but you can register your own.
-- **.span**
-Determines the amount of views that should fit on one row, by default it is set to zero and uses the default `UICollectionViewFlowLayout` to render `UICollectionView` based views.
-- **.size**
-Calculated value based on the amount of items and their combined heights.
-- **.meta**
-Custom data that you are free to use as you like in your implementation.
-
-### ViewModel
-
-```swift
-  public struct ViewModel: Mappable {
-  public var index = 0
-  public var title = ""
-  public var subtitle = ""
-  public var image = ""
-  public var kind = ""
-  public var action: String?
-  public var size = CGSize(width: 0, height: 0)
-  public var meta = [String : AnyObject]()
-}
-```
-
-- **.index**
-Calculated value to determine the index it has inside of the component.
-- **.title**
-The headline for your data, in a `UITableViewCell` it is normally used for `textLabel.text` but you are free to use it as you like.
-- **.subtitle**
-Same as for the title, in a `UITableViewCell` it is normally used for `detailTextLabel.text`.
-- **.image**
-Can be either a URL string or a local string, you can easily determine if it should use a local or remote asset in your view.
-- **.kind**
-Is used for the `reuseIdentifier` of your `UITableViewCell` or `UICollectionViewCell`.
-- **.action**
-Action identifier for you to parse and process when a user taps on a list item. We recommend [Compass](https://github.com/hyperoslo/Compass) as centralized navigation system.
-- **.size**
-Can either inherit from the `UITableViewCell`/`UICollectionViewCell`, or be manually set by the height calculations inside of your view.
-- **.meta**
-This is used for extra data that you might need access to inside of your view, it can be a hex color, a unique identifer or additional images for your view.
+- JSON based views that could be served up by your backend.
+- Live editing.
+- View based caching for controllers, table and collection views.
+- Supports displaying multiple collections, tables and regular views in the same container.
+- Features both infinity scrolling and pull to refresh (on iOS), all you have to do is to
+setup delegates that conform to the public protocols on `SpotsController`.
+- No need to implement your own data source, every `Component` has its
+own set of `Item`s,
+which is maintained internally and is there at your disposal if you decide to
+make changes to them.
+- Easy configuration for registering views.
+This improves code reuse and helps to theme your app and ultimately keep your application consistent.
+- A rich public API for appending, prepending, inserting, updating or
+deleting `Item`s.
+- Has built-in support for regular views inside of both collection and table views.
+Write one view and use it across your application, when and where you want to use it.
+- Supports view states such as normal, highlighted and selected.
+- View height caching that improves performance as each view has its height stored as a calculated value.
+on the view model.
+- Supports multiple views inside the same data source, no more ugly if-statements in your implementation;
+- Soft & hard updates to UI components.
+- Supports both views made programmatically and nib-based views.
+**Spots** handles this for you by using a view registry.
 
 ## Installation
 
@@ -279,14 +129,20 @@ it, simply add the following line to your Podfile:
 pod 'Spots'
 ```
 
+**Spots** is also available through [Carthage](https://github.com/Carthage/Carthage). To install it, add the following to your `Cartfile`:
+
+```ruby
+github "hyperoslo/Spots"
+```
+
+## Changelog
+
+Looking for a change log? You can find it [here](https://github.com/hyperoslo/Spots/blob/master/CHANGELOG.md)
+
 ## Dependencies
 
-- **[Brick](https://github.com/hyperoslo/Brick)**
-`ViewModel` comes from `Brick`.
-- **[Sugar](https://github.com/hyperoslo/Sugar)**
-To sweeten the implementation.
-- **[Tailor](https://github.com/zenangst/Tailor)**
-To seamlessly map JSON to both `Component` and `ViewModel`.
+- **[Cache](https://github.com/hyperoslo/Cache)**
+Used for `ComponentModel` and `Item` caching when initializing a `SpotsController` or `CoreComponent` object with a cache key.
 
 ## Author
 
@@ -298,7 +154,7 @@ We would love you to contribute to **Spots**, check the [CONTRIBUTING](https://g
 
 ## Credits
 
-- The idea behind Spot came from [John Sundell](https://github.com/johnsundell)'s tech talk "Components & View Models in the Cloud - how Spotify builds native, dynamic UIs".
+- The idea behind Spot came from [John Sundell](https://github.com/johnsundell)'s tech talk "ComponentModels & View Models in the Cloud - how Spotify builds native, dynamic UIs".
 - [Ole Begemanns](https://github.com/ole/) implementation of [OLEContainerScrollView](https://github.com/ole/OLEContainerScrollView) is the basis for `SpotsScrollView`, we salute you.
 Reference: http://oleb.net/blog/2014/05/scrollviews-inside-scrollviews/
 
