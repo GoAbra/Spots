@@ -77,7 +77,7 @@ open class SpotsScrollView: UIScrollView, UIGestureRecognizerDelegate {
   ///
   /// - parameter subview: - parameter subview: The view to add to the view as a subview..
   func didAddSubviewToContainer(_ subview: UIView) {
-    subview.autoresizingMask = UIViewAutoresizing()
+    subview.autoresizingMask = UIView.AutoresizingMask()
 
     guard componentsView.subviews.index(of: subview) != nil else {
       return

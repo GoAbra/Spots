@@ -4,7 +4,7 @@ public class ListWrapper: UITableViewCell, Wrappable, Cell {
 
   weak public var wrappedView: View?
 
-  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: .default, reuseIdentifier: reuseIdentifier)
 
     backgroundColor = .clear

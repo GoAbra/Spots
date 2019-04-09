@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = "Spots"
   s.summary          = "A cross-platform view controller framework for building component-based UIs"
-  s.version          = "7.5.0"
+  s.version          = "7.5.2"
   s.homepage         = "https://github.com/hyperoslo/Spots"
   s.license          = 'MIT'
   s.author           = { "Hyper Interaktiv AS" => "ios@hyper.no" }
@@ -20,5 +20,5 @@ Pod::Spec.new do |s|
   
   s.dependency 'Cache', '~> 4.0'
   s.framework  = "Foundation"
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.0' }
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2' }
 end

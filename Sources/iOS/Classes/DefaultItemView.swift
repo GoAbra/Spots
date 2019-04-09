@@ -16,7 +16,7 @@ open class DefaultItemView: UITableViewCell, ItemConfigurable {
   /// - parameter reuseIdentifier: A string used to identify the cell object if it is to be reused for drawing multiple rows of a table view.
   ///
   /// - returns: An initialized UITableViewCell object or nil if the object could not be created.
-  public override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
+    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String!) {
     super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
     isAccessibilityElement = true
   }

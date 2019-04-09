@@ -25,17 +25,17 @@ extension UICollectionView: UserInterface {
 
         if type is UICollectionReusableView.Type {
           register(type,
-                   forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+                   forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                    withReuseIdentifier: identifier)
           register(type,
-                   forSupplementaryViewOfKind: UICollectionElementKindSectionFooter,
+                   forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
                    withReuseIdentifier: identifier)
         } else {
           register(GridHeaderFooterWrapper.self,
-                   forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+                   forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                    withReuseIdentifier: identifier)
           register(GridHeaderFooterWrapper.self,
-                   forSupplementaryViewOfKind: UICollectionElementKindSectionFooter,
+                   forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
                    withReuseIdentifier: identifier)
         }
       case .nib(let nib):

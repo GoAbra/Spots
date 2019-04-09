@@ -341,7 +341,7 @@ public class Component: NSObject, ComponentHorizontallyScrollable {
     }
 
     if let collectionView = collectionView {
-      let scrollPosition: UICollectionViewScrollPosition
+        let scrollPosition: UICollectionView.ScrollPosition
 
       if model.interaction.scrollDirection == .horizontal {
         scrollPosition = .centeredHorizontally

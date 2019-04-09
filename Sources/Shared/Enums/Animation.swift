@@ -45,7 +45,7 @@ public enum Animation: Int {
   ///
   /// Resolves a Animation into a UITableViewRowAnimation
   ///
-  public var tableViewAnimation: UITableViewRowAnimation {
+    public var tableViewAnimation: UITableView.RowAnimation {
     switch self {
     case .fade:
       return .fade
