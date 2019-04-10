@@ -1,14 +1,23 @@
 import Foundation
 import Cache
 
+//TODO: BK: made changes to this to get it to compile, but it likely will not work.
+//It doesn't appear we are actually using caching in Spots, so this should be fine.
+//
+//Modification was done after reading this thread:
+//    https://github.com/hyperoslo/Cache/issues/192#issuecomment-398321936
+//
+public struct Cachable: Codable {}
+
 /// A StateCache class used for Controller and Component object caching
 public final class StateCache {
-  static func makeStorage() -> Storage? {
+  static func makeStorage() -> Storage<Cachable>? {
     let cacheName = String(describing: StateCache.self)
     let bundleIdentifier = Bundle.main.bundleIdentifier ?? "Spots.bundle.identifier"
     return try? Storage(
       diskConfig: DiskConfig(name: "\(cacheName)/\(bundleIdentifier)"),
-      memoryConfig: MemoryConfig(expiry: .never, countLimit: 10, totalCostLimit: 10)
+      memoryConfig: MemoryConfig(expiry: .never, countLimit: 10, totalCostLimit: 10),
+      transformer: TransformerFactory.forCodable(ofType: Cachable.self)
     )
   }
 
@@ -23,7 +32,7 @@ public final class StateCache {
   public let key: String
 
   /// A JSON Cache object
-  let storage: Storage?
+  let storage: Storage<Cachable>?
 
   // MARK: - Initialization
 
@@ -44,17 +53,19 @@ public final class StateCache {
   /// - parameter json: A JSON object
   public func save<T: Codable>(_ object: T) {
     let expiry = Expiry.date(Date().addingTimeInterval(60 * 60 * 24 * 3))
-    try? storage?.setObject(object, forKey: key, expiry: expiry)
+    //TODO: BK: A crash here indicates we are using caching and this forced cast workaround broke it
+    try? storage?.setObject(object as! Cachable, forKey: key, expiry: expiry)
   }
 
   /// Load JSON from cache
   ///
   /// - returns: A Swift dictionary
   public func load<T: Codable>() -> T? {
-    guard let object = try? storage?.object(ofType: T.self, forKey: key) else {
+    guard let object = try? storage?.object(forKey: key) else {
       return nil
     }
-    return object
+    //TODO: BK: A crash here indicates we are using caching and this forced cast workaround broke it
+    return object as! T
   }
 
   /// Clear the current StateCache
