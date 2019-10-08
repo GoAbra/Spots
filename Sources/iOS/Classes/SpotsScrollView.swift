@@ -164,7 +164,7 @@ open class SpotsScrollView: UIScrollView, UIGestureRecognizerDelegate {
         }
 
         guard let oldValue = value.oldValue else {
-          strongSelf.layoutViews()
+          (scrollView as? SpotsScrollView)?.layoutViews()
           return
         }
 
