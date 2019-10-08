@@ -147,19 +147,19 @@ open class SpotsScrollView: UIScrollView, UIGestureRecognizerDelegate {
 
     switch view {
     case let scrollView as UIScrollView:
-      let contentSizeObserver = scrollView.observe(\.contentSize, options: [.initial, .new, .old], changeHandler: { [weak self] (scrollView, value) in
-        guard let strongSelf = self, let newValue = value.newValue else {
+      let contentSizeObserver = scrollView.observe(\.contentSize, options: [.initial, .new, .old], changeHandler: { scrollView, value in
+        guard let newValue = value.newValue else {
           return
         }
 
         if scrollView.contentSize != newValue {
-          strongSelf.computeContentSize()
-          strongSelf.layoutViews()
+          (scrollView as? SpotsScrollView).computeContentSize()
+          (scrollView as? SpotsScrollView).layoutViews()
         }
       })
 
-      let contentOffsetObserver = scrollView.observe(\.contentOffset, options: [.new, .old], changeHandler: { [weak self] (_, value) in
-        guard let strongSelf = self, let newValue = value.newValue else {
+      let contentOffsetObserver = scrollView.observe(\.contentOffset, options: [.new, .old], changeHandler: { scrollView, value in
+        guard let newValue = value.newValue else {
           return
         }
 
@@ -169,7 +169,7 @@ open class SpotsScrollView: UIScrollView, UIGestureRecognizerDelegate {
         }
 
         if newValue.y != oldValue.y {
-          strongSelf.layoutViews()
+          (scrollView as? SpotsScrollView).layoutViews()
         }
       })
 
@@ -177,18 +177,18 @@ open class SpotsScrollView: UIScrollView, UIGestureRecognizerDelegate {
       observers.append(Observer(view: view, keyValueObservation: contentOffsetObserver))
       fallthrough
     default:
-      let boundsObserver = view.observe(\.bounds, options: [.new, .old], changeHandler: { [weak self] (_, value) in
-        guard let strongSelf = self, let newValue = value.newValue else {
+      let boundsObserver = view.observe(\.bounds, options: [.new, .old], changeHandler: { ScrollView, value in
+        guard let newValue = value.newValue else {
           return
         }
 
         guard let oldValue = value.oldValue else {
-          strongSelf.layoutViews()
+          (scrollView as? SpotsScrollView).layoutViews()
           return
         }
 
         if newValue.origin.y != oldValue.origin.y {
-          strongSelf.layoutViews()
+          (scrollView as? SpotsScrollView).layoutViews()
         }
       })
 
