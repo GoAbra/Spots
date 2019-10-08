@@ -153,8 +153,8 @@ open class SpotsScrollView: UIScrollView, UIGestureRecognizerDelegate {
         }
 
         if scrollView.contentSize != newValue {
-          (scrollView as? SpotsScrollView).computeContentSize()
-          (scrollView as? SpotsScrollView).layoutViews()
+          (scrollView as? SpotsScrollView)?.computeContentSize()
+          (scrollView as? SpotsScrollView)?.layoutViews()
         }
       })
 
@@ -169,7 +169,7 @@ open class SpotsScrollView: UIScrollView, UIGestureRecognizerDelegate {
         }
 
         if newValue.y != oldValue.y {
-          (scrollView as? SpotsScrollView).layoutViews()
+          (scrollView as? SpotsScrollView)?.layoutViews()
         }
       })
 
@@ -183,12 +183,12 @@ open class SpotsScrollView: UIScrollView, UIGestureRecognizerDelegate {
         }
 
         guard let oldValue = value.oldValue else {
-          (scrollView as? SpotsScrollView).layoutViews()
+          (scrollView as? SpotsScrollView)?.layoutViews()
           return
         }
 
         if newValue.origin.y != oldValue.origin.y {
-          (scrollView as? SpotsScrollView).layoutViews()
+          (scrollView as? SpotsScrollView)?.layoutViews()
         }
       })
 
