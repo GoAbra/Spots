@@ -177,7 +177,7 @@ open class SpotsScrollView: UIScrollView, UIGestureRecognizerDelegate {
       observers.append(Observer(view: view, keyValueObservation: contentOffsetObserver))
       fallthrough
     default:
-      let boundsObserver = view.observe(\.bounds, options: [.new, .old], changeHandler: { ScrollView, value in
+      let boundsObserver = view.observe(\.bounds, options: [.new, .old], changeHandler: { scrollView, value in
         guard let newValue = value.newValue else {
           return
         }
